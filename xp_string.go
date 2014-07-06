@@ -1,6 +1,9 @@
 package xparam
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 //------------------------------------------------------------
 // Xparam access for string
@@ -10,7 +13,7 @@ import "fmt"
 func (xp XP) As_String(key string) (str string) {
 
 	if val, ok := xp[key]; ok && val != nil {
-		str = fmt.Sprint(val)
+		str = strings.TrimSpace(fmt.Sprint(val))
 	}
 	return
 }
@@ -19,7 +22,7 @@ func (xp XP) As_String(key string) (str string) {
 func (xp XP) As_StringNil(key string) (str *string) {
 
 	if val, ok := xp[key]; ok && val != nil {
-		s := fmt.Sprint(val)
+		s := strings.TrimSpace(fmt.Sprint(val))
 		str = &s
 	}
 	return
@@ -28,7 +31,7 @@ func (xp XP) As_StringNil(key string) (str *string) {
 // Sets parameter as string.
 func (xp XP) To_String(to *map[string]string, key string) {
 	if val, ok := xp[key]; ok && val != nil {
-		str := fmt.Sprint(val)
+		str := strings.TrimSpace(fmt.Sprint(val))
 		if str != "" {
 			(*to)[key] = str
 		}
