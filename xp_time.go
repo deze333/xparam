@@ -18,6 +18,13 @@ func (xp XP) As_Time(key string) (t time.Time) {
 	return
 }
 
+// Gets parameter as time duration.
+func (xp XP) As_TimeDuration(key string) (d time.Duration) {
+
+	d = time.Duration(xp.As_Int(key))
+	return
+}
+
 // Gets parameter as time.Duration array.
 func (xp XP) As_ArrayDuration(key string) (data []time.Duration) {
 
