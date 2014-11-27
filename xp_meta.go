@@ -76,13 +76,19 @@ func asArray_Duration(data string) (vals []time.Duration, err error) {
 	vals = make([]time.Duration, len(ss))
 	var v time.Duration
 
-	for i, s := range ss {
+	idx := 0
+	for _, s := range ss {
 		s = strings.TrimSpace(s)
+		if s == "" {
+			continue
+		}
 		if v, err = StringToDuration(s); err == nil {
-			vals[i] = v
+			vals[idx] = v
+			idx++
 		} else {
 			return
 		}
 	}
+	vals = vals[0:idx]
 	return
 }
