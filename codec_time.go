@@ -34,8 +34,10 @@ func StringToDuration(val string) (dt time.Duration, err error) {
 		dt = time.Duration(num) * time.Hour
 	case "m":
 		dt = time.Duration(num) * time.Minute
+	case "s":
+		dt = time.Duration(num) * time.Second
 	default:
-		err = fmt.Errorf("Time duration must end with d/h/m: %v", val)
+		err = fmt.Errorf("Time duration must end with d/h/m/s: %v", val)
 	}
 	return
 }
